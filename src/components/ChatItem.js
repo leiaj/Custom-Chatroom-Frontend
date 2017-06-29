@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Draggable from 'react-draggable';
+import MyDraggableItem from './MyDraggableItem';
+
 
 export default function ChatItem(props){
   const draggableItem = props.items.map(item =>{
     return(
-      <Draggable key={item.id}>
+      <MyDraggableItem key={item.id} defaultPosition={{x: item.x_coord, y: item.y_coord}} setCurrentItemCoords={props.setCurrentItemCoords} onStart={() => props.setCurrentItem(item)} onStop={props.saveItemCoords}>
         <p><img src={item.img_url} /></p>
-      </Draggable>
+      </MyDraggableItem>
     )
   })
 

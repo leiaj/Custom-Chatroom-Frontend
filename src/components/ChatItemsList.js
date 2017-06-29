@@ -11,7 +11,7 @@ export default function ChatItemsList(props){
   })
   return(
     <div>
-      <ChatItem items={props.items} />
+      <ChatItem items={props.items} setCurrentItemCoords={props.setCurrentItemCoords} setCurrentItem={props.setCurrentItem} saveItemCoords={props.saveItemCoords}/>
     </div>
   )
 }
