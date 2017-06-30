@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import ChatItemsList from '../components/ChatItemsList'
 import ChatBox from '../components/ChatBox'
+import ChatCanvas from '../components/ChatCanvas'
 import MyDraggableItem from '../components/MyDraggableItem'
-import { ItemsAdapter } from '../adapters'
+import { ItemsAdapter, ChatroomAdapter } from '../adapters'
+import { Switch, Route } from 'react-router-dom'
 
 import axios from 'axios'
 //import activepublicchatlist, chatactiveuserlist, chatbox, chatcanvas, chatitemslist
@@ -13,6 +15,7 @@ export default class ChatRoomContainer extends Component{
     this.state = {
       activeUsers: [],
       chatItems: [],
+      chatrooms: [],
       currentItem: {},
       currentItemCoords:{x_coord:0, y_coord:0},
       messages: []
@@ -47,6 +50,11 @@ export default class ChatRoomContainer extends Component{
     .then(data => this.setState({
       chatItems: data
     }))
+    ChatroomAdapter.fetchChatroom()
+    .then(data => this.setState({
+      chatrooms: data
+    }))
+
     this.props.cableApp.messages = this.props.cableApp.cable.subscriptions.create('MessagesChannel',
   {
     received: (message) => this.setState({ messages: [message, ...this.state.messages,] })
@@ -57,6 +65,12 @@ export default class ChatRoomContainer extends Component{
   render(){
     return(
       <div>
+        <div>
+          <Route exact path='/:id' render={(routerProps) =>{
+            const id = routerProps.match.params.id
+            return <ChatCanvas chatroomId={id} chatrooms={this.state.chatrooms} />
+          }} />
+        </div>
       <ChatItemsList items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} setCurrentItem={this.setCurrentItem} saveItemCoords={this.saveItemCoords} />
       </div>
 

@@ -17,21 +17,36 @@ body {
   margin-left: 20px;
 }
 
-/*.item-images{
+.item-images{
   border: solid;
-  height: 300px;
-  width: auto;
-  margin-left: 100px;
+  height: 200px;
+  width: 1000px;
+  margin-left: 200px;
   margin-right: 100px;
   list-style-type: none;
 }
 
-
 .crop img{
-  border: solid;
   height: auto;
-  width: 10%;
-  float:left;
-  margin-left: 20px;
-  padding: 5px;
-}*/
+  width: 12%;
+}
+
+.navbar .nav > li {
+  display: table-cell;
+  width: 1%;
+  float: none;
+
+}
+
+.chat-canvas{
+  width: 1000px;
+  height: 500px;
+  margin-left: 200px;
+  margin-right: 100px;
+}
+
+.background-img img{
+  border: solid;
+  width: 1000px;
+  height: 500px;
+}
