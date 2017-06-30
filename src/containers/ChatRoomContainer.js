@@ -68,10 +68,10 @@ export default class ChatRoomContainer extends Component{
         <div>
           <Route exact path='/:id' render={(routerProps) =>{
             const id = routerProps.match.params.id
-            return <ChatCanvas chatroomId={id} chatrooms={this.state.chatrooms} />
+            return (<div><ChatCanvas chatroomId={id} chatrooms={this.state.chatrooms} />
+            <ChatItemsList items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} setCurrentItem={this.setCurrentItem} saveItemCoords={this.saveItemCoords} chatroomId={id}/></div>)
           }} />
         </div>
-      <ChatItemsList items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} setCurrentItem={this.setCurrentItem} saveItemCoords={this.saveItemCoords} />
       </div>
 
     )
