@@ -32,8 +32,8 @@ export class ChatroomAdapter{
 }
 
 export class GiphyAdapter{
-  static fetchGifs(term){
-    return fetch(`http://api.giphy.com/v1/gifs/search?q=${term}&api_key=dc6zaTOxFJmzC`)
+  static fetchGifs(searchTerm){
+    return fetch(`http://api.giphy.com/v1/gifs/search?q=${searchTerm}&api_key=dc6zaTOxFJmzC`)
     .then(res => res.json())
   }
 }

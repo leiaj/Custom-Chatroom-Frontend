@@ -3,6 +3,7 @@ import ChatItemsList from '../components/ChatItemsList'
 import ChatBox from '../components/ChatBox'
 import ChatCanvas from '../components/ChatCanvas'
 import MyDraggableItem from '../components/MyDraggableItem'
+import GiphySearch from '../components/GiphySearch'
 import { ItemsAdapter, ChatroomAdapter, GiphyAdapter } from '../adapters'
 import { Switch, Route } from 'react-router-dom'
 
@@ -19,12 +20,14 @@ export default class ChatRoomContainer extends Component{
       currentItem: {},
       currentItemCoords:{x_coord:0, y_coord:0},
       giphyItems: [],
+      searchTerm: '',
       messages: []
     }
 
     this.setCurrentItemCoords = this.setCurrentItemCoords.bind(this)
     this.setCurrentItem = this.setCurrentItem.bind(this)
     this.saveItemCoords = this.saveItemCoords.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   setCurrentItemCoords(coords){
@@ -45,6 +48,18 @@ export default class ChatRoomContainer extends Component{
     ItemsAdapter.updateCoords(item, newCoords)
   }
 
+  handleChange(event){
+    const term = this.state.searchTerm
+    const gifs = this.state.giphyItems
+    this.setState({
+      searchTerm: event.target.value
+    })
+    GiphyAdapter.fetchGifs(term)
+    .then(data => this.setState({
+      giphyItems: data
+    }))
+    console.log(gifs)
+  }
 
   componentDidMount(){
     ItemsAdapter.fetchItems()
@@ -55,11 +70,6 @@ export default class ChatRoomContainer extends Component{
     .then(data => this.setState({
       chatrooms: data
     }))
-    GiphyAdapter.fetchGifs()
-    .then(data => this.setState({
-      giphyItems: data
-    }))
-
     this.props.cableApp.messages = this.props.cableApp.cable.subscriptions.create('MessagesChannel',
   {
     received: (message) => this.setState({ messages: [message, ...this.state.messages,] })
@@ -73,8 +83,15 @@ export default class ChatRoomContainer extends Component{
         <div>
           <Route exact path='/:id' render={(routerProps) =>{
             const id = routerProps.match.params.id
-            return (<div><ChatCanvas chatroomId={id} chatrooms={this.state.chatrooms} />
-            <ChatItemsList items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} setCurrentItem={this.setCurrentItem} saveItemCoords={this.saveItemCoords} chatroomId={id}/></div>)
+            return (
+              <div>
+                  <ChatCanvas chatroomId={id} chatrooms={this.state.chatrooms} />
+                  <ChatItemsList items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} setCurrentItem={this.setCurrentItem} saveItemCoords={this.saveItemCoords} chatroomId={id}/>
+                  <div className="giphy-search">
+                  <GiphySearch searchTerm={this.state.searchTerm} handleChange={this.handleChange} giphyItems={this.state.giphyItems}/>
+                  </div>
+              </div>
+            )
           }} />
         </div>
       </div>

@@ -5,17 +5,17 @@ import MyDraggableItem from './MyDraggableItem';
 export default function ChatItem(props){
   let currentChatroomID = props.chatroomId
   let items = props.items
-  console.log(`Items are:${items}`)
+  // console.log(`Items are:${items}`)
   //console.log('Being called')
   function setItems(items){
-    console.log('About to go over items')
+    // console.log('About to go over items')
     let activeItems = []
     items.map(item => {
       if (item.chatroom_id == currentChatroomID){
         activeItems.push(item)
       }
     })
-    console.log(`These are the active items:${activeItems}`)
+    // console.log(`These are the active items:${activeItems}`)
     return activeItems
   }
 

@@ -50,3 +50,12 @@ body {
   width: 1000px;
   height: 500px;
 }
+
+.giphy-search{
+  position: absolute;
+    top: 190px;
+    left: 0;
+    width: 200px;
+    height: 700px;
+    border: 3px solid;
+}
