@@ -3,7 +3,7 @@ import ChatItemsList from '../components/ChatItemsList'
 import ChatBox from '../components/ChatBox'
 import ChatCanvas from '../components/ChatCanvas'
 import MyDraggableItem from '../components/MyDraggableItem'
-import { ItemsAdapter, ChatroomAdapter } from '../adapters'
+import { ItemsAdapter, ChatroomAdapter, GiphyAdapter } from '../adapters'
 import { Switch, Route } from 'react-router-dom'
 
 import axios from 'axios'
@@ -18,6 +18,7 @@ export default class ChatRoomContainer extends Component{
       chatrooms: [],
       currentItem: {},
       currentItemCoords:{x_coord:0, y_coord:0},
+      giphyItems: [],
       messages: []
     }
 
@@ -53,6 +54,10 @@ export default class ChatRoomContainer extends Component{
     ChatroomAdapter.fetchChatroom()
     .then(data => this.setState({
       chatrooms: data
+    }))
+    GiphyAdapter.fetchGifs()
+    .then(data => this.setState({
+      giphyItems: data
     }))
 
     this.props.cableApp.messages = this.props.cableApp.cable.subscriptions.create('MessagesChannel',

@@ -1,5 +1,6 @@
 const baseUrl = 'http://localhost:3000/api/v1'
 
+
 export class ItemsAdapter{
 
   static fetchItems(){
@@ -28,7 +29,11 @@ export class ChatroomAdapter{
     return fetch(`${baseUrl}/chatrooms`)
     .then(res => res.json())
   }
+}
 
-
-
+export class GiphyAdapter{
+  static fetchGifs(term){
+    return fetch(`http://api.giphy.com/v1/gifs/search?q=${term}&api_key=dc6zaTOxFJmzC`)
+    .then(res => res.json())
+  }
 }
