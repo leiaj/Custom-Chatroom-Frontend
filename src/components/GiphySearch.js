@@ -7,7 +7,7 @@ export default function GiphySearch(props){
 
   const draggableGif = gifs.map(gif => {
     return(
-      <MyDraggableItem><img src={"https://media.giphy.com/media/" + gif.id + "/giphy.gif"} width="100" height="100" /></MyDraggableItem>
+      <div id={gif.id}><img src={"https://media.giphy.com/media/" + gif.id + "/giphy.gif"} width="100" height="100" /></div>
     )
   })
 
@@ -38,7 +38,9 @@ export default function GiphySearch(props){
     <div>
       <h5>Search Giphy</h5>
       <input type='text' value={props.searchTerm} onChange={props.handleChange}/>
+      <div className="scroll-bar">
       {draggableGif}
+      </div>
     </div>
 
   )
