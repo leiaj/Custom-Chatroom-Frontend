@@ -35,5 +35,8 @@ export class GiphyAdapter{
   static fetchGifs(searchTerm){
     return fetch(`http://api.giphy.com/v1/gifs/search?q=${searchTerm}&api_key=dc6zaTOxFJmzC`)
     .then(res => res.json())
+    .then(console.log)
   }
+
+
 }

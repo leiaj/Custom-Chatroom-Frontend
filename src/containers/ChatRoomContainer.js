@@ -50,7 +50,7 @@ export default class ChatRoomContainer extends Component{
 
   handleChange(event){
     const term = this.state.searchTerm
-    const gifs = this.state.giphyItems
+    // const gifs = this.state.giphyItems
     this.setState({
       searchTerm: event.target.value
     })
@@ -58,7 +58,6 @@ export default class ChatRoomContainer extends Component{
     .then(data => this.setState({
       giphyItems: data
     }))
-    console.log(gifs)
   }
 
   componentDidMount(){
