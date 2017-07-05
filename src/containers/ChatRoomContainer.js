@@ -54,9 +54,10 @@ export default class ChatRoomContainer extends Component{
     this.setState({
       searchTerm: event.target.value
     })
+    console.log("Here I go to fetch gifs")
     GiphyAdapter.fetchGifs(term)
-    .then(data => this.setState({
-      giphyItems: data
+    .then(results => this.setState({
+      giphyItems: results.data
     }))
   }
 

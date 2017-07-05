@@ -3,6 +3,8 @@ import MyDraggableItem from './MyDraggableItem'
 
 export default function GiphySearch(props){
   let gifs = props.giphyItems
+  console.log(gifs)
+
 
   // function setGifs(gifs){
   //   let giphyGifs = []
@@ -31,7 +33,7 @@ export default function GiphySearch(props){
     <div>
       <h5>Search Giphy</h5>
       <input type='text' value={props.searchTerm} onChange={props.handleChange}/>
-    
+      {gifs.map(gif => <embed src={gif.embed_url} width="100" height="100" />)}
     </div>
 
   )
