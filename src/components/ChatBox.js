@@ -1,32 +1,31 @@
-import React from 'react';
-import Message from './MessageList'
-import MessafeForm from './MessageForm'
+import React, {Component} from 'react';
 
-export default (props) => {
-  const messages = props.messages.map(msg => {
-    return (<div key={msg.id} className="item">
-      <div className="content">
-        <div className="header">
-          {msg.username}
-        </div>
-        <div className="description">
-          {msg.content}
-        </div>
-      </div>
-    </div>
-  )
-  })
+export default class ChatBox extends Component{
+  state = {message: '' }
 
-  return (
-    <div className="ui ten wide column">
-      <div className="ui raised segment">
-        <div className="ui relaxed divided list" >
-          <div className="item">
-            <h1>{props.topic}</h1>
-          </div>
-          { messages }
-        </div>
+
+  sendMessage(e){
+    e.preventDefault()
+    this.props.handleMessage(this.state.message)
+  }
+
+  handleChange(e){
+    e.preventDefault()
+    this.setState({
+      message: e.target.value
+    })
+  }
+
+
+  render(){
+    console.log("chatbox--------------")
+    return (
+      <div>
+        <form onSubmit={this.sendMessage.bind(this)}>
+        <input type='text' onChange={this.handleChange.bind(this)}/>
+        <input type='submit' />
+        </form>
       </div>
-    </div>
-  )
+    )
+  }
 }

@@ -1,9 +1,3 @@
-// t.string "name"
-//     t.string "img_url"
-//     t.integer "chatroom_id"
-//     t.integer "x_coord"
-//     t.integer "y_coord"
-
 import React, { Component } from 'react';
 
 export default class ItemForm extends Component{

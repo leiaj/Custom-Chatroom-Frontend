@@ -3,6 +3,8 @@ import MyDraggableItem from './MyDraggableItem';
 
 
 export default function ChatItem(props){
+  console.log("chatITEMS****************")
+
   let currentChatroomID = props.chatroomId
   let items = props.items
   // console.log(`Items are:${items}`)

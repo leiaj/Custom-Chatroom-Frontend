@@ -7,10 +7,6 @@ import ChatroomForm from './components/ChatroomForm'
 
 class App extends Component {
 
-
-
-
-
   render() {
     return (
       <div className="App">

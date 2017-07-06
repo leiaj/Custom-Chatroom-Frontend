@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 const CableApp = {}
 
-CableApp.cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/cable`) //server not client
+CableApp.cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/chat`)
 
 ReactDOM.render(
   <Router>

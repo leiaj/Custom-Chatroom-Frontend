@@ -1,6 +1,8 @@
 import React from 'react'
 
 export default function ChatCanvas(props){
+  console.log("chatCANVAS================")
+
 let currentChatroomID = props.chatroomId
 let chatrooms = props.chatrooms
 
