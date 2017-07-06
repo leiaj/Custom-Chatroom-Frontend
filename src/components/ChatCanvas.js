@@ -16,16 +16,20 @@ function setCurrentChatroom(chatrooms){
 }
 
 let backgroundImage
+let name
 
 if (setCurrentChatroom(chatrooms) == undefined) {
   backgroundImage = ''
+  name = ''
 } else {
   backgroundImage = setCurrentChatroom(chatrooms).background_img_url
+  name = setCurrentChatroom(chatrooms).name
 }
 
     return(
       <div className='chat-canvas'>
         <div className='background-img'>
+        <h1>{name}</h1>
         {<img src={backgroundImage} />}
         </div>
       </div>

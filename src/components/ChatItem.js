@@ -38,7 +38,6 @@ export default function ChatItem(props){
 
 
   return(
-    <div>
       <div className='chatitem-list'>
         <ul className='item-images'>
           <li className='crop'>
@@ -46,6 +45,5 @@ export default function ChatItem(props){
           </li>
         </ul>
       </div>
-    </div>
   )
 }

@@ -38,5 +38,20 @@ export class GiphyAdapter{
     .then(console.log("we have the data"))
   }
 
+  // export class CreateChatroom{
+  //   static create(chatroom){
+  //    return
+  //     fetch(`${baseUrl}/chatrooms`, {
+  //      method: 'POST',
+  //      headers: headers(),
+  //      body: JSON.stringify({
+  //        name: chatroom.name,
+  //        background_img_url: chatroom.background_img_url
+  //      })
+  //    })
+  //    .then(response => response.json() )
+  //   }
+  // }
+
 
 }

@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import ChatItemsList from '../components/ChatItemsList'
+// import ChatItemsList from '../components/ChatItemsList'
+import ChatItem from '../components/ChatItem'
 import ChatBox from '../components/ChatBox'
 import ChatCanvas from '../components/ChatCanvas'
 import MyDraggableItem from '../components/MyDraggableItem'
+import ChatroomForm from '../components/ChatroomForm'
 import GiphySearch from '../components/GiphySearch'
+import ItemForm from '../components/ItemForm'
+import ChatroomList from '../components/ChatroomList'
+import Welcome from '../components/Welcome'
 import { ItemsAdapter, ChatroomAdapter, GiphyAdapter } from '../adapters'
-import { Switch, Route } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 
-import axios from 'axios'
+// import axios from 'axios'
 //import activepublicchatlist, chatactiveuserlist, chatbox, chatcanvas, chatitemslist
 
 export default class ChatRoomContainer extends Component{
@@ -28,6 +33,8 @@ export default class ChatRoomContainer extends Component{
     this.setCurrentItem = this.setCurrentItem.bind(this)
     this.saveItemCoords = this.saveItemCoords.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.createChatroom = this.createChatroom.bind(this)
+    this.createItem = this.createItem.bind(this)
   }
 
   setCurrentItemCoords(coords){
@@ -61,6 +68,49 @@ export default class ChatRoomContainer extends Component{
     }))
   }
 
+  createChatroom(chatroom){
+    console.log("I'm being called")
+    fetch(`http://localhost:3000/api/v1/chatrooms`, {
+     method: 'POST',
+     headers: {
+       'content-type': 'application/json',
+       'accept': 'application/json'
+     },
+     body: JSON.stringify({
+       chatroom: {
+         name: chatroom.name,
+         background_img_url: chatroom.background_img_url,
+         user_id: 1
+       }
+     })
+   })
+   .then(response => response.json() )
+   console.log("I've been called")
+  }
+
+  createItem(item){
+    console.log("I'm being called")
+    fetch(`http://localhost:3000/api/v1/items`, {
+     method: 'POST',
+     headers: {
+       'content-type': 'application/json',
+       'accept': 'application/json'
+     },
+     body: JSON.stringify({
+       item: {
+         name: item.name,
+         img_url: item.img_url,
+         chatroom_id: item.chatroom_id,
+         x_coord: item.x_coord,
+         y_coord: item.y_coord
+       }
+     })
+   })
+   console.log("I've been called")
+  }
+
+
+
   componentDidMount(){
     ItemsAdapter.fetchItems()
     .then(data => this.setState({
@@ -81,15 +131,16 @@ export default class ChatRoomContainer extends Component{
     return(
       <div>
         <div>
-          <Route exact path='/:id' render={(routerProps) =>{
+          <Route exact path ='/' render={() =><Welcome chatrooms={this.state.chatrooms}/>}/>
+          <Route exact path = '/new' render= {() =><ChatroomForm onSubmit={this.createChatroom}/>}/>
+          <Route exact path = '/chatrooms' render={()=><ChatroomList chatrooms={this.state.chatrooms}/>} />
+          <Route exact path='/chatrooms/:id' render={(routerProps) =>{
             const id = routerProps.match.params.id
             return (
               <div>
+                  <ItemForm chatroom_id={id} onSubmit={this.createItem} />
                   <ChatCanvas chatroomId={id} chatrooms={this.state.chatrooms} />
-                  <ChatItemsList items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} setCurrentItem={this.setCurrentItem} saveItemCoords={this.saveItemCoords} chatroomId={id}/>
-                  <div className="giphy-search">
-                  <GiphySearch searchTerm={this.state.searchTerm} handleChange={this.handleChange} giphyItems={this.state.giphyItems}/>
-                  </div>
+                  <ChatItem items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} setCurrentItem={this.setCurrentItem} saveItemCoords={this.saveItemCoords} chatroomId={id}/>
               </div>
             )
           }} />
