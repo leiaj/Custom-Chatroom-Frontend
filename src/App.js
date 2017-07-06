@@ -17,7 +17,7 @@ class App extends Component {
           <NavBar />
         <div className="welcomePage">
         </div>
-          <h1>Welcome Im the App Component</h1>
+          <h1></h1>
           <ChatRoomContainer cableApp={this.props.cableApp} />
       </div>
     );

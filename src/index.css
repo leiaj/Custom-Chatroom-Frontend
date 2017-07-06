@@ -29,7 +29,7 @@
 
 .crop img{
   position: fixed;
-  width: 10%;
+  width: 12%;
 }
 
 .navbar .nav > li {
@@ -41,11 +41,30 @@
 
 .item-form{
     position: fixed;
-    bottom: 125px;
+    bottom: 185px;
     left: 20px;
     width: 225px;
     height: 500px;
     border: solid;
+}
+
+.tips{
+  border: solid;
+  width: 500px;
+  float: left;
+  margin-left: 180px;
+
+}
+
+.tips img{
+  width: 80%;
+}
+
+.chatroom-form{
+  border: solid;
+  width: 500px;
+  height: 500px;
+  margin-left: 700px;
 }
 
 /*.chat-canvas{
@@ -65,16 +84,12 @@
   border: solid;
   width: 500px;
   height: 500px;
-  margin-left: 100px;
+  float: left;
+  margin-left: 180px;
 }
 
 
-.welcome-create{
-  border: solid;
-  width: 500px;
-  height: 500px;
-  margin-left: 700px;
-}
+
 
 
 /*.giphy-search{

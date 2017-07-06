@@ -30,14 +30,19 @@ export default class ChatroomForm extends Component{
 
 
 
+
+
   render(){
     return(
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <p><input type='text' placeholder="Chat Name" name="name" value={this.state.name} onChange={this.handleChange}/></p>
-          <p><input type='text' placeholder="Background IMG URL" name="background_img_url" value={this.state.background_img_url} onChange={this.handleChange}/></p>
-          <p><input type='submit'/></p>
-        </form>
+        <div className='chatroom-form'>
+          <h1>Create a New Chatroom</h1>
+          <form onSubmit={this.handleSubmit}>
+            <p><input type='text' placeholder="Chat Name" name="name" value={this.state.name} onChange={this.handleChange}/></p>
+            <p><input type='text' placeholder="Background IMG URL" name="background_img_url" value={this.state.background_img_url} onChange={this.handleChange}/></p>
+            <p><input type='submit'/></p>
+          </form>
+        </div>
       </div>
     )
   }

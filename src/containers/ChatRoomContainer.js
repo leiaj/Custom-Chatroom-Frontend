@@ -9,13 +9,14 @@ import GiphySearch from '../components/GiphySearch'
 import ItemForm from '../components/ItemForm'
 import ChatroomList from '../components/ChatroomList'
 import Welcome from '../components/Welcome'
+import NewChatContainer from './NewChatContainer'
 import { ItemsAdapter, ChatroomAdapter, GiphyAdapter } from '../adapters'
-import { Link, Route } from 'react-router-dom'
+import { Link, Route, withRouter } from 'react-router-dom'
 
 // import axios from 'axios'
 //import activepublicchatlist, chatactiveuserlist, chatbox, chatcanvas, chatitemslist
 
-export default class ChatRoomContainer extends Component{
+class ChatRoomContainer extends Component{
   constructor(){
     super()
     this.state = {
@@ -26,7 +27,8 @@ export default class ChatRoomContainer extends Component{
       currentItemCoords:{x_coord:0, y_coord:0},
       giphyItems: [],
       searchTerm: '',
-      messages: []
+      messages: [],
+      dummy: null
     }
 
     this.setCurrentItemCoords = this.setCurrentItemCoords.bind(this)
@@ -85,6 +87,7 @@ export default class ChatRoomContainer extends Component{
      })
    })
    .then(response => response.json() )
+   .then(data => this.props.history.push(`/chatrooms/${data.id}`))
    console.log("I've been called")
   }
 
@@ -105,10 +108,31 @@ export default class ChatRoomContainer extends Component{
          y_coord: item.y_coord
        }
      })
-   })
-   console.log("I've been called")
+   }).then(response => response.json())
+   .then(data => this.setState({
+      dummy: data
+   }))
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    if (nextState.chatItems !== this.state.chatItems){
+      return true
+    }
+    if (nextState.chatrooms !== this.state.chatrooms){
+      return true
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState){
+      ItemsAdapter.fetchItems()
+      .then(data => this.setState({
+        chatItems: data
+      }))
+      ChatroomAdapter.fetchChatroom()
+      .then(data => this.setState({
+        chatrooms: data
+      }))
+  }
 
 
   componentDidMount(){
@@ -132,15 +156,20 @@ export default class ChatRoomContainer extends Component{
       <div>
         <div>
           <Route exact path ='/' render={() =><Welcome chatrooms={this.state.chatrooms}/>}/>
+
           <Route exact path = '/new' render= {() =><ChatroomForm onSubmit={this.createChatroom}/>}/>
+
           <Route exact path = '/chatrooms' render={()=><ChatroomList chatrooms={this.state.chatrooms}/>} />
+
           <Route exact path='/chatrooms/:id' render={(routerProps) =>{
             const id = routerProps.match.params.id
             return (
               <div>
                   <ItemForm chatroom_id={id} onSubmit={this.createItem} />
+
                   <ChatCanvas chatroomId={id} chatrooms={this.state.chatrooms} />
-                  <ChatItem items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} setCurrentItem={this.setCurrentItem} saveItemCoords={this.saveItemCoords} chatroomId={id}/>
+
+                  <ChatItem items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} setCurrentItem={this.setCurrentItem} saveItemCoords={this.saveItemCoords} chatroomId={id} dummy={this.state.dummy}/>
               </div>
             )
           }} />
@@ -152,3 +181,5 @@ export default class ChatRoomContainer extends Component{
 
 
 }
+
+export default withRouter(ChatRoomContainer)

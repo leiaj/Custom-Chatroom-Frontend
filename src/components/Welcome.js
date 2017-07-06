@@ -10,10 +10,8 @@ export default function Welcome(props){
         <h1>Available Chatrooms</h1>
         <h3><ChatroomList chatrooms={props.chatrooms}/></h3>
       </div>
-        <div className='welcome-create'>
-        <h1>Create a New Chatroom</h1>
         <ChatroomForm />
-        </div>
+
     </div>
   )
 }
