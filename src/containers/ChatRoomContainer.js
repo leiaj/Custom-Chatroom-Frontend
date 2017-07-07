@@ -15,6 +15,10 @@ import { ItemsAdapter, ChatroomAdapter, GiphyAdapter } from '../adapters'
 import { Link, Route, withRouter } from 'react-router-dom'
 
 class ChatRoomContainer extends Component{
+
+  static contextTypes = {
+    router: PropTypes.object
+  }
   constructor(){
     super()
     this.state = {
@@ -92,11 +96,11 @@ class ChatRoomContainer extends Component{
        }
      })
    })
-   .then(response => response.json() )
-  //  .then(chatroom => this.context.history.push(`/chatrooms/${chatroom.id}`))
-  //  .then(data => this.setState({
-  //        chatrooms: data
-  //  }))
+   .then(chatroom => chatroom.json())
+   .then((chatroom) => {
+     this.props.history.push(`/chatrooms/${chatroom.id}`)})
+
+
   //  .then(console.log)
   }
 
@@ -117,12 +121,13 @@ class ChatRoomContainer extends Component{
          y_coord: item.y_coord
        }
      })
-   }).then(response => response.json())
-   .then(item => this.setState((prevState)=>{
-     return{
-       chatItems: [...prevState.chatItems, item]
-          }
-   }))
+   })
+   .then(response => response.json())
+  //  .then(item => this.setState((prevState)=>{
+  //    return{
+  //      chatItems: [...prevState.chatItems, item]
+  //         }
+  //  }))
   }
 
   // shouldComponentUpdate(nextProps, nextState){

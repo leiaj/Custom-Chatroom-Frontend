@@ -29,6 +29,11 @@ export class ChatroomAdapter{
     return fetch(`${baseUrl}/chatrooms`)
     .then(res => res.json())
   }
+
+  static fetchAChatroom(id){
+    return fetch(`${baseUrl}/chatrooms/${id}`)
+    .then(res => res.json())
+  }
 }
 
 export class GiphyAdapter{

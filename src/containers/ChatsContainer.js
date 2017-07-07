@@ -17,13 +17,18 @@ export default class ChatsContainer extends Component{
   constructor(props){
     super(props)
     this.state = {
-      messages: []
+      messages: [],
+      chatroom: {}
     }
     this.displayMessages = this.displayMessages.bind(this)
     this.alertSN = this.alertSN.bind(this)
   }
 
   componentDidMount(){
+    ChatroomAdapter.fetchAChatroom(this.props.chatroom_id)
+    .then(chatroom => this.setState({
+      chatroom
+    }))
     this.props.cableApp.messages = this.props.cableApp.cable.subscriptions.create({channel: "MessagesChannel", room: `${this.props.chatroom_id}` },
       {
         received: (message) => {
@@ -64,6 +69,7 @@ export default class ChatsContainer extends Component{
         <ItemForm chatroom_id={this.props.chatroom_id} onSubmit={this.props.createItem} />
 
         <ChatCanvas chatroomId={this.props.chatroom_id} chatrooms={this.props.chatrooms}
+        chatroom={this.state.chatroom}
         items={this.props.items} setCurrentItemCoords={this.props.setCurrentItemCoords} setCurrentItem={this.props.setCurrentItem} saveItemCoords={this.props.saveItemCoords} chatroomId={this.props.chatroom_id} dummy={this.props.dummy} />
 
         <ChatBox handleMessage={this.handleMessage.bind(this)} displayMessages={this.displayMessages} />
