@@ -4,6 +4,7 @@ import MyDraggableItem from './MyDraggableItem';
 
 export default function ChatItem(props){
   console.log("chatITEMS****************")
+  console.log(props)
 
   let currentChatroomID = props.chatroomId
   let items = props.items
@@ -28,6 +29,8 @@ export default function ChatItem(props){
   }else {
     chatroomItems = setItems(items)
   }
+
+  console.log(chatroomItems)
 
   const draggableItem = chatroomItems.map(item =>{
     return(

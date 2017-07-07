@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ChatsContainer from './ChatsContainer'
 import ChatItem from '../components/ChatItem'
 import ChatCanvas from '../components/ChatCanvas'
 import MyDraggableItem from '../components/MyDraggableItem'
@@ -142,31 +143,11 @@ class ChatRoomContainer extends Component{
     .then(data => this.setState({
       chatrooms: data
     }))
-    this.props.cableApp.messages = this.props.cableApp.cable.subscriptions.create({channel: "MessagesChannel", room: "Test" },
-      {
-        received: (message) => {
-          console.log("from channel=>", message)
-          this.setState({messages: [message, ...this.state.messages]})
-        }
-      })
-    }
-
-    handleMessage(message){
-      this.props.cableApp.messages.send({content: message})
-    }
-
-    displayMessages(){
-      const messages = this.state.messages.map(message => <li>{message.content}</li>)
-      return(
-        <ul>
-        {messages}
-        </ul>
-      )
-    }
+}
 
 
   render(){
-    console.log("ChatRoomContainer" ,this.state.messages)
+    console.log(this.state.chatrooms)
     return(
       <div>
         <div>
@@ -180,13 +161,8 @@ class ChatRoomContainer extends Component{
             const id = routerProps.match.params.id
             return (
               <div>
-                  <ItemForm chatroom_id={id} onSubmit={this.createItem} />
-
-                  <ChatCanvas chatroomId={id} chatrooms={this.state.chatrooms} />
-
-                  <ChatItem items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} setCurrentItem={this.setCurrentItem} saveItemCoords={this.saveItemCoords} chatroomId={id} dummy={this.state.dummy}/>
-
-                  <ChatBox handleMessage={this.handleMessage.bind(this)} />
+                  <ChatsContainer chatroom_id={id} createItem={this.createItem} chatrooms={this.state.chatrooms} items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} saveItemCoords={this.saveItemCoords} dummy={this.state.dummy} cableApp={this.props.cableApp}
+                  setCurrentItem={this.setCurrentItem}/>
               </div>
             )
           }} />

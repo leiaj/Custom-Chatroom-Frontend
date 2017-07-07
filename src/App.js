@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from "./components/NavBar"
 import ChatRoomContainer from "./containers/ChatRoomContainer"
 import ChatroomForm from './components/ChatroomForm'
+import ChatsContainer from './containers/ChatsContainer'
 
 class App extends Component {
 

@@ -6,6 +6,7 @@ export default function ChatCanvas(props){
 let currentChatroomID = props.chatroomId
 let chatrooms = props.chatrooms
 
+
 function setCurrentChatroom(chatrooms){
   let activeChatroom
   chatrooms.map(chatroom => {
