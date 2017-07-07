@@ -20,6 +20,7 @@ export default class ChatsContainer extends Component{
       messages: []
     }
     this.displayMessages = this.displayMessages.bind(this)
+    this.alertSN = this.alertSN.bind(this)
   }
 
   componentDidMount(){
@@ -45,19 +46,29 @@ export default class ChatsContainer extends Component{
       )
     }
 
+    alertSN() {
+    var txt;
+    var person = prompt("Please enter a screen name:", "coolperson69");
+    if (person == null || person == "") {
+        txt = "User cancelled the prompt.";
+    } else {
+        txt = "Hello " + person + "! How are you today?";
+    }
+}
+
   render(){
     console.log("chatsCONTAINER ------------")
-    console.log(this.props.chatrooms)
+    // console.log(this.props.chatrooms)
     return(
       <div className='chats-container'>
         <ItemForm chatroom_id={this.props.chatroom_id} onSubmit={this.props.createItem} />
 
-        <ChatCanvas chatroomId={this.props.chatroom_id} chatrooms={this.props.chatrooms} />
+        <ChatCanvas chatroomId={this.props.chatroom_id} chatrooms={this.props.chatrooms}
+        items={this.props.items} setCurrentItemCoords={this.props.setCurrentItemCoords} setCurrentItem={this.props.setCurrentItem} saveItemCoords={this.props.saveItemCoords} chatroomId={this.props.chatroom_id} dummy={this.props.dummy} />
 
         <ChatBox handleMessage={this.handleMessage.bind(this)} displayMessages={this.displayMessages} />
 
 
-        <ChatItem items={this.props.items} setCurrentItemCoords={this.props.setCurrentItemCoords} setCurrentItem={this.props.setCurrentItem} saveItemCoords={this.props.saveItemCoords} chatroomId={this.props.chatroom_id} dummy={this.props.dummy}/>
       </div>
     )
   }

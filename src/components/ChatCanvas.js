@@ -1,4 +1,5 @@
 import React from 'react'
+import ChatItem from './ChatItem.js'
 
 export default function ChatCanvas(props){
   console.log("chatCANVAS================")
@@ -32,7 +33,10 @@ if (setCurrentChatroom(chatrooms) == undefined) {
     return(
       <div className='chat-canvas'>
         <h1>{name}</h1>
+        <div className='chat-background'>
         {<img src={backgroundImage} />}
+        </div>
+        <ChatItem items={props.items} setCurrentItemCoords={props.setCurrentItemCoords} setCurrentItem={props.setCurrentItem} saveItemCoords={props.saveItemCoords} chatroomId={props.chatroomId} dummy={props.dummy}/>
       </div>
     )
 

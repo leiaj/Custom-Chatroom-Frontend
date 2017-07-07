@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import ChatsContainer from './ChatsContainer'
 import ChatItem from '../components/ChatItem'
 import ChatCanvas from '../components/ChatCanvas'
@@ -51,7 +52,15 @@ class ChatRoomContainer extends Component{
   saveItemCoords(){
     let item = this.state.currentItem
     let newCoords = this.state.currentItemCoords
+    console.log("am i htiting this")
     ItemsAdapter.updateCoords(item, newCoords)
+    .then(() => {
+      ItemsAdapter.fetchItems()
+          .then(data => this.setState({
+            chatItems: data
+          }))
+    })
+
   }
 
   handleChange(event){
@@ -84,8 +93,11 @@ class ChatRoomContainer extends Component{
      })
    })
    .then(response => response.json() )
-   .then(chatroom => this.props.history.push(`/chatrooms/${chatroom.id}`))
-   console.log("I've been called")
+  //  .then(chatroom => this.context.history.push(`/chatrooms/${chatroom.id}`))
+  //  .then(data => this.setState({
+  //        chatrooms: data
+  //  }))
+  //  .then(console.log)
   }
 
   createItem(item){
@@ -147,7 +159,7 @@ class ChatRoomContainer extends Component{
 
 
   render(){
-    console.log(this.state.chatrooms)
+    // console.log(this.state.chatrooms)
     return(
       <div>
         <div>

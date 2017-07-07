@@ -20,7 +20,7 @@ export default class ChatroomForm extends Component{
   handleSubmit(e){
     e.preventDefault()
     console.log("I'm clickin")
-    console.log(this.state)
+    // console.log(this.state)
     this.props.onSubmit(this.state)
     this.setState({
       name: "",
