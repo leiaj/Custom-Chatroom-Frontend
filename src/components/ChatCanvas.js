@@ -31,10 +31,8 @@ if (setCurrentChatroom(chatrooms) == undefined) {
 
     return(
       <div className='chat-canvas'>
-        <div className='background-img'>
         <h1>{name}</h1>
         {<img src={backgroundImage} />}
-        </div>
       </div>
     )
 

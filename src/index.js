@@ -7,7 +7,6 @@ import actionCable from 'actioncable'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 const CableApp = {}
-
 CableApp.cable = actionCable.createConsumer(`ws://${window.location.hostname}:3000/chat`)
 
 ReactDOM.render(

@@ -7,6 +7,9 @@ export default class ChatBox extends Component{
   sendMessage(e){
     e.preventDefault()
     this.props.handleMessage(this.state.message)
+    this.setState({
+      message: ''
+    })
   }
 
   handleChange(e){
@@ -20,9 +23,10 @@ export default class ChatBox extends Component{
   render(){
     console.log("chatbox--------------")
     return (
-      <div>
+      <div className='chatbox'>
+        {this.props.displayMessages()}
         <form onSubmit={this.sendMessage.bind(this)}>
-        <input type='text' onChange={this.handleChange.bind(this)}/>
+        <input type='text' onChange={this.handleChange.bind(this)} value={this.state.message}/>
         <input type='submit' />
         </form>
       </div>

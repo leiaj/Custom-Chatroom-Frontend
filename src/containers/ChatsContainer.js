@@ -19,6 +19,7 @@ export default class ChatsContainer extends Component{
     this.state = {
       messages: []
     }
+    this.displayMessages = this.displayMessages.bind(this)
   }
 
   componentDidMount(){
@@ -35,28 +36,28 @@ export default class ChatsContainer extends Component{
     this.props.cableApp.messages.send({content: message})
     }
 
-  // displayMessages(){
-  //   const messages = this.state.messages.map(message => <li>{message.content}</li>)
-  //     return(
-  //       <ul>
-  //       {messages}
-  //       </ul>
-  //     )
-  //   }
+  displayMessages(){
+    const messages = this.state.messages.map(message => <li>{message.content}</li>)
+      return(
+        <ul>
+        {messages}
+        </ul>
+      )
+    }
 
   render(){
     console.log("chatsCONTAINER ------------")
     console.log(this.props.chatrooms)
     return(
-      <div>
+      <div className='chats-container'>
         <ItemForm chatroom_id={this.props.chatroom_id} onSubmit={this.props.createItem} />
 
         <ChatCanvas chatroomId={this.props.chatroom_id} chatrooms={this.props.chatrooms} />
 
+        <ChatBox handleMessage={this.handleMessage.bind(this)} displayMessages={this.displayMessages} />
+
+
         <ChatItem items={this.props.items} setCurrentItemCoords={this.props.setCurrentItemCoords} setCurrentItem={this.props.setCurrentItem} saveItemCoords={this.props.saveItemCoords} chatroomId={this.props.chatroom_id} dummy={this.props.dummy}/>
-
-        <ChatBox handleMessage={this.handleMessage.bind(this)} />
-
       </div>
     )
   }

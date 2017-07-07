@@ -42,10 +42,17 @@
 .item-form{
     position: fixed;
     bottom: 185px;
-    left: 20px;
-    width: 225px;
+    left: 10px;
+    width: 200px;
     height: 500px;
     border: solid;
+}
+
+.chatbox{
+  border: solid;
+  height: 500px;
+  width: 200px;
+  float: right;
 }
 
 .tips{
@@ -67,14 +74,14 @@
   margin-right: 200px;
 }
 
-/*.chat-canvas{
-  width: 1000px;
+.chat-canvas{
+  width: 900px;
   height: 500px;
-  margin-left: 200px;
-  margin-right: 100px;
-}*/
+  margin-left: 250px;
+  /*margin-right: 100px;*/
+}
 
-.background-img img{
+.chat-canvas img{
   border: solid;
   width: 900px;
   height: 500px;
@@ -89,7 +96,9 @@
 }
 
 
-
+.display-msg li{
+  list-style-type: none;
+}
 
 
 /*.giphy-search{
