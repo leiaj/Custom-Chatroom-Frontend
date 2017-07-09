@@ -40,16 +40,21 @@ export default class ChatsContainer extends Component{
       })
     }
 
-  handleMessage(message){
-    this.props.cableApp.messages.send({content: message})
+  handleMessage(message, username){
+    if (message){
+      this.props.cableApp.messages.send({
+        content: message,
+        username: localStorage.person
+        })
+      }
     }
 
   displayMessages(){
-    const user = this.props.activeUser
-    const messages = this.state.messages.map(message => <li>{message.content}</li>)
+    // const user = this.props.activeUser
+    const messages = this.state.messages.map(message => <li>{message.username}: {message.content}</li>)
       return(
         <ul>
-          {messages}
+        {messages}
         </ul>
       )
     }

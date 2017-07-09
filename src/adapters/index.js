@@ -1,5 +1,4 @@
-const baseUrl = 'http://localhost:3000/api/v1'
-
+const baseUrl = `http://${window.location.hostname}:3000/api/v1`
 
 export class ItemsAdapter{
 

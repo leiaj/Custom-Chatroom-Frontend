@@ -82,7 +82,7 @@ class ChatRoomContainer extends Component{
 
   createChatroom(chatroom){
     console.log("I'm being called")
-    fetch(`http://localhost:3000/api/v1/chatrooms`, {
+    fetch(`http://${window.location.hostname}/api/v1/chatrooms`, {
      method: 'POST',
      headers: {
        'content-type': 'application/json',
@@ -106,7 +106,7 @@ class ChatRoomContainer extends Component{
 
   createItem(item){
     console.log("I'm being called")
-    fetch(`http://localhost:3000/api/v1/items`, {
+    fetch(`http://${window.location.hostname}/api/v1/items`, {
      method: 'POST',
      headers: {
        'content-type': 'application/json',
@@ -152,9 +152,11 @@ class ChatRoomContainer extends Component{
 
   alertSN() {
     var txt;
-    var person = prompt("Please enter a screen name:", "coolperson69");
+    if (!localStorage.person){
+      localStorage.person = prompt("Please enter a screen name:", "coolperson69");
+    }
     this.setState({
-      activeUser: person
+      activeUser: localStorage.person
     })
   }
 

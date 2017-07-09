@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 
 export default class ChatBox extends Component{
-  state = {message: '' }
+  state = {
+    message: '',
+    activeUser: localStorage.person
+  }
 
 
   sendMessage(e){
     e.preventDefault()
     this.props.handleMessage(this.state.message)
     this.setState({
-      message: ''
+      message: '',
+      activeUser: localStorage.person
     })
   }
 
