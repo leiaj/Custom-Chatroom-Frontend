@@ -64,7 +64,6 @@ class ChatRoomContainer extends Component{
             chatItems: data
           }))
     })
-
   }
 
   handleChange(event){
@@ -190,7 +189,7 @@ class ChatRoomContainer extends Component{
             return (
               <div>
                   <ChatsContainer chatroom_id={id} createItem={this.createItem} chatrooms={this.state.chatrooms} items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} saveItemCoords={this.saveItemCoords} dummy={this.state.dummy} cableApp={this.props.cableApp}
-                  setCurrentItem={this.setCurrentItem} activeUser={this.state.activeUser}/>
+                  setCurrentItem={this.setCurrentItem} activeUser={this.state.activeUser} handleDrag={this.handleDrag} currentItemCoords={this.state.currentItemCoords}/>
               </div>
             )
           }} />

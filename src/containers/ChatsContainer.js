@@ -38,6 +38,14 @@ export default class ChatsContainer extends Component{
           })
         }
       })
+      this.props.cableApp.images = this.props.cableApp.cable.subscriptions.create({channel: "ImagesChannel", room: `${this.props.chatroom_id}`}, {
+        received: (item) => {
+          console.log("image received", item)
+          // this.setState({
+          //   currentItemCoords: [item, ...this.state.item]
+          // })
+        }
+      })
     }
 
   handleMessage(message, username){
@@ -59,6 +67,17 @@ export default class ChatsContainer extends Component{
       )
     }
 
+    handleDrag(mouseEvent, item){
+      console.log("Hi I'm being dragged")
+      console.log(mouseEvent)
+      console.log(mouseEvent.target.x)
+      console.log(mouseEvent.target.y)
+      this.props.cableApp.images.send({
+        item: item
+      })
+
+    }
+
 
   render(){
     console.log("chatsCONTAINER ------------")
@@ -69,7 +88,7 @@ export default class ChatsContainer extends Component{
 
         <ChatCanvas chatroomId={this.props.chatroom_id} chatrooms={this.props.chatrooms}
         chatroom={this.state.chatroom}
-        items={this.props.items} setCurrentItemCoords={this.props.setCurrentItemCoords} setCurrentItem={this.props.setCurrentItem} saveItemCoords={this.props.saveItemCoords} chatroomId={this.props.chatroom_id} dummy={this.props.dummy} />
+        items={this.props.items} setCurrentItemCoords={this.props.setCurrentItemCoords} setCurrentItem={this.props.setCurrentItem} saveItemCoords={this.props.saveItemCoords} chatroomId={this.props.chatroom_id} dummy={this.props.dummy} handleDrag={this.handleDrag}/>
 
         <ChatBox handleMessage={this.handleMessage.bind(this)} displayMessages={this.displayMessages} />
 

@@ -19,6 +19,8 @@ export class ItemsAdapter{
         item: {x_coord: newCoords.x_coord, y_coord: newCoords.y_coord}
       })
     })
+    .then(item => item.json())
+    .then(item => console.log(item))
   }
 
 }

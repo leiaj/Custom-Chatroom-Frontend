@@ -35,7 +35,7 @@ if (props.chatroom == undefined) {
         <div className='chat-background'>
         {<img src={backgroundImage} />}
         </div>
-        <ChatItem items={props.items} setCurrentItemCoords={props.setCurrentItemCoords} setCurrentItem={props.setCurrentItem} saveItemCoords={props.saveItemCoords} chatroomId={props.chatroomId} dummy={props.dummy}/>
+        <ChatItem items={props.items} setCurrentItemCoords={props.setCurrentItemCoords} setCurrentItem={props.setCurrentItem} saveItemCoords={props.saveItemCoords} chatroomId={props.chatroomId} dummy={props.dummy} handleDrag={props.handleDrag}/>
       </div>
     )
 

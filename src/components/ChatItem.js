@@ -31,7 +31,7 @@ export default function ChatItem(props){
 
   const draggableItem = chatroomItems.map(item =>{
     return(
-      <MyDraggableItem key={item.id} defaultPosition={{x: item.x_coord, y: item.y_coord}} setCurrentItemCoords={props.setCurrentItemCoords} onStart={() => props.setCurrentItem(item)} onStop={props.saveItemCoords}>
+      <MyDraggableItem key={item.id} defaultPosition={{x: item.x_coord, y: item.y_coord}} setCurrentItemCoords={props.setCurrentItemCoords} onStart={() => props.setCurrentItem(item)} onStop={props.saveItemCoords} onDrag={props.handleDrag}>
         <p><img src={item.img_url} /></p>
       </MyDraggableItem>
     )
