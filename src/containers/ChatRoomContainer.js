@@ -22,7 +22,7 @@ class ChatRoomContainer extends Component{
   constructor(){
     super()
     this.state = {
-      activeUsers: [],
+      activeUser: [],
       chatItems: [],
       chatrooms: [],
       currentItem: {},
@@ -123,11 +123,11 @@ class ChatRoomContainer extends Component{
      })
    })
    .then(response => response.json())
-  //  .then(item => this.setState((prevState)=>{
-  //    return{
-  //      chatItems: [...prevState.chatItems, item]
-  //         }
-  //  }))
+   .then(item => this.setState((prevState)=>{
+     return{
+       chatItems: [...prevState.chatItems, item]
+          }
+   }))
   }
 
   // shouldComponentUpdate(nextProps, nextState){
@@ -150,6 +150,14 @@ class ChatRoomContainer extends Component{
   //     }))
   // }
 
+  alertSN() {
+    var txt;
+    var person = prompt("Please enter a screen name:", "coolperson69");
+    this.setState({
+      activeUser: person
+    })
+  }
+
 
   componentDidMount(){
     ItemsAdapter.fetchItems()
@@ -160,6 +168,7 @@ class ChatRoomContainer extends Component{
     .then(data => this.setState({
       chatrooms: data
     }))
+    this.alertSN()
 }
 
 
@@ -179,7 +188,7 @@ class ChatRoomContainer extends Component{
             return (
               <div>
                   <ChatsContainer chatroom_id={id} createItem={this.createItem} chatrooms={this.state.chatrooms} items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} saveItemCoords={this.saveItemCoords} dummy={this.state.dummy} cableApp={this.props.cableApp}
-                  setCurrentItem={this.setCurrentItem}/>
+                  setCurrentItem={this.setCurrentItem} activeUser={this.state.activeUser}/>
               </div>
             )
           }} />

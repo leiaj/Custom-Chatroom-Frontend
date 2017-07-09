@@ -84,6 +84,13 @@
   list-style-type: none;
 }
 
+.chatbox li{
+  list-style-type: none;
+}
+
+.chatbox{
+  margin-right: 300px;
+}
 
 /*.giphy-search{
   position: absolute;

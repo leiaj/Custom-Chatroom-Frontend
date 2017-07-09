@@ -17,11 +17,11 @@ export default class ChatsContainer extends Component{
   constructor(props){
     super(props)
     this.state = {
+      activeUser: '',
       messages: [],
       chatroom: {}
     }
     this.displayMessages = this.displayMessages.bind(this)
-    this.alertSN = this.alertSN.bind(this)
   }
 
   componentDidMount(){
@@ -33,7 +33,9 @@ export default class ChatsContainer extends Component{
       {
         received: (message) => {
           console.log("from channel=>", message)
-          this.setState({messages: [message, ...this.state.messages]})
+          this.setState({
+            messages: [message, ...this.state.messages]
+          })
         }
       })
     }
@@ -43,23 +45,15 @@ export default class ChatsContainer extends Component{
     }
 
   displayMessages(){
+    const user = this.props.activeUser
     const messages = this.state.messages.map(message => <li>{message.content}</li>)
       return(
         <ul>
-        {messages}
+          {messages}
         </ul>
       )
     }
 
-    alertSN() {
-    var txt;
-    var person = prompt("Please enter a screen name:", "coolperson69");
-    if (person == null || person == "") {
-        txt = "User cancelled the prompt.";
-    } else {
-        txt = "Hello " + person + "! How are you today?";
-    }
-}
 
   render(){
     console.log("chatsCONTAINER ------------")
