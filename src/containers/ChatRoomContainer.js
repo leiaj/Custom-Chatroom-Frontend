@@ -81,7 +81,7 @@ class ChatRoomContainer extends Component{
 
   createChatroom(chatroom){
     console.log("I'm being called")
-    fetch(`http://${window.location.hostname}/api/v1/chatrooms`, {
+    fetch(`http://localhost:3000/api/v1/chatrooms`, {
      method: 'POST',
      headers: {
        'content-type': 'application/json',
@@ -105,7 +105,7 @@ class ChatRoomContainer extends Component{
 
   createItem(item){
     console.log("I'm being called")
-    fetch(`http://${window.location.hostname}/api/v1/items`, {
+    fetch(`http://localhost:3000/api/v1/items`, {
      method: 'POST',
      headers: {
        'content-type': 'application/json',
@@ -177,7 +177,6 @@ class ChatRoomContainer extends Component{
     // console.log(this.state.chatrooms)
     return(
       <div>
-        <div>
           <Route exact path ='/' render={() =><Welcome chatrooms={this.state.chatrooms}/>}/>
 
           <Route exact path = '/new' render= {() =><div><ChatroomForm onSubmit={this.createChatroom}/> <Tips /></div>}/>
@@ -187,15 +186,13 @@ class ChatRoomContainer extends Component{
           <Route exact path='/chatrooms/:id' render={(routerProps) =>{
             const id = routerProps.match.params.id
             return (
-              <div>
+              <div className="chatroom-container">
                   <ChatsContainer chatroom_id={id} createItem={this.createItem} chatrooms={this.state.chatrooms} items={this.state.chatItems} setCurrentItemCoords={this.setCurrentItemCoords} saveItemCoords={this.saveItemCoords} dummy={this.state.dummy} cableApp={this.props.cableApp}
                   setCurrentItem={this.setCurrentItem} activeUser={this.state.activeUser} handleDrag={this.handleDrag} currentItemCoords={this.state.currentItemCoords}/>
               </div>
             )
           }} />
-        </div>
       </div>
-
     )
   }
 

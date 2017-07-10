@@ -72,9 +72,9 @@ export default class ChatsContainer extends Component{
       console.log(mouseEvent)
       console.log(mouseEvent.target.x)
       console.log(mouseEvent.target.y)
-      this.props.cableApp.images.send({
-        item: item
-      })
+      // this.props.cableApp.images.send({
+      //   item: item
+      // })
 
     }
 
@@ -83,16 +83,24 @@ export default class ChatsContainer extends Component{
     console.log("chatsCONTAINER ------------")
     // console.log(this.props.chatrooms)
     return(
-      <div className='chats-container'>
-        <ItemForm chatroom_id={this.props.chatroom_id} onSubmit={this.props.createItem} />
+      <div className='wrapper'>
+        <div className="content">
+          <div className="columns">
+            <div className='item-form-parent'>
+              <ItemForm chatroom_id={this.props.chatroom_id} onSubmit={this.props.createItem} />
+            </div>
 
-        <ChatCanvas chatroomId={this.props.chatroom_id} chatrooms={this.props.chatrooms}
-        chatroom={this.state.chatroom}
-        items={this.props.items} setCurrentItemCoords={this.props.setCurrentItemCoords} setCurrentItem={this.props.setCurrentItem} saveItemCoords={this.props.saveItemCoords} chatroomId={this.props.chatroom_id} dummy={this.props.dummy} handleDrag={this.handleDrag}/>
+            <div className='chat-canvas-parent'>
+              <ChatCanvas chatroomId={this.props.chatroom_id} chatrooms={this.props.chatrooms}
+              chatroom={this.state.chatroom}
+              items={this.props.items} setCurrentItemCoords={this.props.setCurrentItemCoords} setCurrentItem={this.props.setCurrentItem} saveItemCoords={this.props.saveItemCoords} chatroomId={this.props.chatroom_id} dummy={this.props.dummy} handleDrag={this.handleDrag}/>
+            </div>
 
-        <ChatBox handleMessage={this.handleMessage.bind(this)} displayMessages={this.displayMessages} />
-
-
+            <div className='chat-box-parent'>
+              <ChatBox handleMessage={this.handleMessage.bind(this)} displayMessages={this.displayMessages} />
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

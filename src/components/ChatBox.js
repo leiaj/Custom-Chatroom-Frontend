@@ -28,6 +28,7 @@ export default class ChatBox extends Component{
     console.log("chatbox--------------")
     return (
       <div className='chatbox'>
+      <h3>Make Some Friends</h3>
         {this.props.displayMessages()}
         <form onSubmit={this.sendMessage.bind(this)}>
         <input type='text' onChange={this.handleChange.bind(this)} value={this.state.message}/>
