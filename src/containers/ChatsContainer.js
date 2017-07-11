@@ -61,9 +61,9 @@ export default class ChatsContainer extends Component{
     // const user = this.props.activeUser
     const messages = this.state.messages.map(message => <li>{message.username}: {message.content}</li>)
       return(
-        <ul>
+        <ol reversed>
         {messages}
-        </ul>
+        </ol>
       )
     }
 

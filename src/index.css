@@ -21,14 +21,11 @@ body{
   flex:1;
 }
 
-.rows{
-
-}
-
 .item-form-parent{
   width: 20%;
   background: #ccc;
   order: 1;
+  height: 650px;
 }
 
 .chat-canvas-parent{
@@ -36,14 +33,17 @@ body{
   order: 2;
   background: #eee;
   width: 900px;
+  height: 650px;
+
 }
 
 .chat-box-parent{
   width: 20%;
   order: 3;
   background: #ddd;
+  overflow-y: scroll;
+  height: 650px;
 }
-
 
 .navbar-li{
   color: white;
@@ -79,6 +79,7 @@ body{
 .chat-background{
   width: 900px;
 }
+
 .chat-background img {
   width: 900px;
 }
@@ -95,21 +96,48 @@ body{
 }
 
 .chatroom-form{
-  border: solid;
+  /*border: solid;
   width: 500px;
   height: 500px;
   float: right;
   margin-right: 200px;
-  overflow: scroll;
+  overflow: scroll;*/
 }
 
 
 .welcome-chats{
   border: solid;
-  width: 500px;
+  border-width: 20px;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-content{
+  display: flex;
+  flex: 1;
+  background: #999;
+  color: #000;
+}
+
+.welcome-columns{
+  display: flex;
+  flex:1;
+}
+
+.welcome-chatform{
+  width: 20%;
+  background: #ccc;
+  order: 1;
   height: 500px;
-  float: left;
-  margin-left: 180px;
+}
+
+.welcome-chatlist{
+  flex: 1;
+  order: 2;
+  background: #eee;
+  width: 900px;
+  height: 500px;
 }
 
 .display-msg li{

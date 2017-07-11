@@ -26,7 +26,7 @@ class ChatRoomContainer extends Component{
       chatItems: [],
       chatrooms: [],
       currentItem: {},
-      currentItemCoords:{x_coord:0, y_coord:0},
+      currentItemCoords:{x_coord:-149, y_coord:-398},
       giphyItems: [],
       searchTerm: '',
       messages: [],
@@ -177,7 +177,8 @@ class ChatRoomContainer extends Component{
     // console.log(this.state.chatrooms)
     return(
       <div>
-          <Route exact path ='/' render={() =><Welcome chatrooms={this.state.chatrooms}/>}/>
+        <div>
+          <Route exact path ='/' render={() =><div><Welcome chatrooms={this.state.chatrooms} createChatroom={this.createChatroom}/> </div>}/>
 
           <Route exact path = '/new' render= {() =><div><ChatroomForm onSubmit={this.createChatroom}/> <Tips /></div>}/>
 
@@ -192,6 +193,7 @@ class ChatRoomContainer extends Component{
               </div>
             )
           }} />
+          </div>
       </div>
     )
   }
