@@ -26,6 +26,7 @@ body{
   background: #ccc;
   order: 1;
   height: 650px;
+  position: relative;
 }
 
 .chat-canvas-parent{
@@ -34,7 +35,13 @@ body{
   background: #eee;
   width: 900px;
   height: 650px;
+  position: relative;
+}
 
+.chat-background{
+  position: relative;
+  margin-left: 100px;
+  /*this might fuck my app up*/
 }
 
 .chat-box-parent{
@@ -43,6 +50,7 @@ body{
   background: #ddd;
   overflow-y: scroll;
   height: 650px;
+  position: relative;
 }
 
 .navbar-li{
@@ -59,6 +67,46 @@ body{
   float: none;
 }
 
+.new-chatroom-wrapper{
+  min-height: 100vh;
+  background: #ccc;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-chatroom-content{
+  display: flex;
+  flex: 1;
+  background: #999;
+  color: #000;
+}
+
+.new-chatroom-columns{
+  display: flex;
+  flex:1;
+}
+
+.new-chatroom-form-parent{
+  /*border: solid;*/
+  flex: 1;
+  order: 2;
+  background: #ccc;
+  width: 900px;
+  height: 625px;
+}
+
+.new-chatrooms-tips-parent{
+  width: 20%;
+  background: #ccc;
+  order: 1;
+  height: 650px;
+}
+
+.chatroom-list{
+  overflow-y: scroll;
+
+}
+
 .chatroom-list li{
   list-style-type: none;
 }
@@ -67,6 +115,12 @@ body{
   width: 95vw;
 }
 
+.messages{
+  border: solid;
+  border-width: thin;
+  width: 250px;
+  margin-left: 10px;
+}
 
 .crop img{
   position: fixed;
@@ -74,6 +128,7 @@ body{
 
 .item-images{
   list-style-type: none;
+  position: absolute;
 }
 
 .chat-background{

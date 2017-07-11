@@ -34,7 +34,7 @@ export default class ChatsContainer extends Component{
         received: (message) => {
           console.log("from channel=>", message)
           this.setState({
-            messages: [message, ...this.state.messages]
+            messages: [...this.state.messages, message]
           })
         }
       })
@@ -61,9 +61,9 @@ export default class ChatsContainer extends Component{
     // const user = this.props.activeUser
     const messages = this.state.messages.map(message => <li>{message.username}: {message.content}</li>)
       return(
-        <ol reversed>
+        <ul className='messages'>
         {messages}
-        </ol>
+        </ul>
       )
     }
 
@@ -86,14 +86,15 @@ export default class ChatsContainer extends Component{
       <div className='wrapper'>
         <div className="content">
           <div className="columns">
-            <div className='item-form-parent'>
-              <ItemForm chatroom_id={this.props.chatroom_id} onSubmit={this.props.createItem} />
-            </div>
 
             <div className='chat-canvas-parent'>
               <ChatCanvas chatroomId={this.props.chatroom_id} chatrooms={this.props.chatrooms}
               chatroom={this.state.chatroom}
               items={this.props.items} setCurrentItemCoords={this.props.setCurrentItemCoords} setCurrentItem={this.props.setCurrentItem} saveItemCoords={this.props.saveItemCoords} chatroomId={this.props.chatroom_id} dummy={this.props.dummy} handleDrag={this.handleDrag}/>
+            </div>
+
+            <div className='item-form-parent'>
+              <ItemForm chatroom_id={this.props.chatroom_id} onSubmit={this.props.createItem} />
             </div>
 
             <div className='chat-box-parent'>

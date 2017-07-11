@@ -26,7 +26,7 @@ class ChatRoomContainer extends Component{
       chatItems: [],
       chatrooms: [],
       currentItem: {},
-      currentItemCoords:{x_coord:-149, y_coord:-398},
+      currentItemCoords:{x_coord: 0, y_coord:0},
       giphyItems: [],
       searchTerm: '',
       messages: [],
@@ -116,8 +116,8 @@ class ChatRoomContainer extends Component{
          name: item.name,
          img_url: item.img_url,
          chatroom_id: item.chatroom_id,
-         x_coord: item.x_coord,
-         y_coord: item.y_coord
+         x_coord: -15,
+         y_coord: -600
        }
      })
    })
@@ -180,7 +180,20 @@ class ChatRoomContainer extends Component{
         <div>
           <Route exact path ='/' render={() =><div><Welcome chatrooms={this.state.chatrooms} createChatroom={this.createChatroom}/> </div>}/>
 
-          <Route exact path = '/new' render= {() =><div><ChatroomForm onSubmit={this.createChatroom}/> <Tips /></div>}/>
+          <Route exact path = '/new' render= {() =>
+            <div className='new-chatroom-wrapper'>
+              <div className='new-chatroom-content-'>
+                <div className='new-chatroom-columns'>
+                  <div className='new-chatroom-form-parent'>
+                    <ChatroomForm onSubmit={this.createChatroom}/>
+                  </div>
+                  <div className='new-chatroom-tips-parent'>
+                    <Tips />
+                  </div>
+                  </div>
+                </div>
+              </div>
+            }/>
 
           <Route exact path = '/chatrooms' render={()=><ChatroomList chatrooms={this.state.chatrooms}/>} />
 

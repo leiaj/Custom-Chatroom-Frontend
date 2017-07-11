@@ -32,10 +32,13 @@ if (props.chatroom == undefined) {
     return(
       <div className='chat-canvas'>
         <div className='chat-background'>
-        <h1>{name}</h1>
         {<img src={backgroundImage} />}
         </div>
         <ChatItem items={props.items} setCurrentItemCoords={props.setCurrentItemCoords} setCurrentItem={props.setCurrentItem} saveItemCoords={props.saveItemCoords} chatroomId={props.chatroomId} dummy={props.dummy} handleDrag={props.handleDrag}/>
+        <div className='chatroom-name'>
+        <h1>{name}</h1>
+        </div>
+
       </div>
     )
 
