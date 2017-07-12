@@ -12,6 +12,8 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-truncate": "^2.1.4",
+    "semantic-ui-css": "^2.2.11",
+    "semantic-ui-react": "^0.71.0",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Form, Container, Grid } from 'semantic-ui-react'
 
 export default class ChatroomForm extends Component{
   constructor(props){
@@ -34,14 +35,23 @@ export default class ChatroomForm extends Component{
 
   render(){
     return(
+
       <div>
         <div className='chatroom-form'>
           <h1>Create a New Chatroom</h1>
+          <Form size='medium'>
           <form onSubmit={this.handleSubmit}>
+          <Form.Field>
             <p><input type='text' placeholder="Chat Name" name="name" value={this.state.name} onChange={this.handleChange}/></p>
+          </Form.Field>
+          <Form.Field>
             <p><input type='text' placeholder="Background IMG URL" name="background_img_url" value={this.state.background_img_url} onChange={this.handleChange}/></p>
-            <p><input type='submit'/></p>
+          </Form.Field>
+            <Button secondary>
+              Create Chatroom
+            </Button>
           </form>
+          </Form>
         </div>
       </div>
     )

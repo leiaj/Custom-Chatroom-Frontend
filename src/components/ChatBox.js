@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Button, Form, Icon } from 'semantic-ui-react'
 
 export default class ChatBox extends Component{
   state = {
@@ -30,10 +31,15 @@ export default class ChatBox extends Component{
       <div className='chatbox'>
       <h3>Make Some Friends</h3>
         {this.props.displayMessages()}
+        <Form>
         <form onSubmit={this.sendMessage.bind(this)}>
         <input type='text' onChange={this.handleChange.bind(this)} value={this.state.message}/>
-        <input type='submit' />
+        <Button secondary>
+        <Icon name='talk'/>
+        Send
+        </Button>
         </form>
+        </Form>
       </div>
     )
   }

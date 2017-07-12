@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Form, Icon } from 'semantic-ui-react'
 
 export default class ItemForm extends Component{
   constructor(props){
@@ -37,11 +38,15 @@ export default class ItemForm extends Component{
     return(
       <div className="item-form">
       <h3>Add a new Item</h3>
+      <Form>
         <form onSubmit={this.handleSubmit}>
           <p><input type='text' placeholder="Name" name="name" value={this.state.name} onChange={this.handleChange}/></p>
           <p><input type='text' placeholder="Item URL" name="img_url" value={this.state.img_url} onChange={this.handleChange}/></p>
-          <p><input type='submit'/></p>
+          <Button secondary>
+          Add Item
+          </Button>
         </form>
+        </Form>
       </div>
     )
   }

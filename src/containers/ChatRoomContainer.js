@@ -96,6 +96,9 @@ class ChatRoomContainer extends Component{
      })
    })
    .then(chatroom => chatroom.json())
+  //  .then(this.setState(prevState){
+  //    chatrooms: [chatroom, ...prevState.chatrooms]
+  //  })
    .then((chatroom) => {
      this.props.history.push(`/chatrooms/${chatroom.id}`)})
 
@@ -184,11 +187,11 @@ class ChatRoomContainer extends Component{
             <div className='new-chatroom-wrapper'>
               <div className='new-chatroom-content-'>
                 <div className='new-chatroom-columns'>
+                <div className='new-chatroom-tips-parent'>
+                  <Tips />
+                </div>
                   <div className='new-chatroom-form-parent'>
                     <ChatroomForm onSubmit={this.createChatroom}/>
-                  </div>
-                  <div className='new-chatroom-tips-parent'>
-                    <Tips />
                   </div>
                   </div>
                 </div>
