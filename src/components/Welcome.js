@@ -5,7 +5,8 @@ import ChatroomForm from './ChatroomForm'
 export default function Welcome(props){
   return(
     <div>
-      <marquee behavior="alternate">{<img src={'https://media.giphy.com/media/3o7bu5XWX4LyvLwvTy/giphy.gif' }/>}</marquee>
+      <marquee behavior="alternate">{<img src={'http://i.imgur.com/kID34vY.gif' }/>}</marquee>
+
       <div className='welcome-chats'>
         <div className='welcome-content'>
           <div className='welcome-columns'>

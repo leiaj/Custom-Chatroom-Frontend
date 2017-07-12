@@ -34,10 +34,11 @@ export default class ChatBox extends Component{
         <Form>
         <form onSubmit={this.sendMessage.bind(this)}>
         <input type='text' onChange={this.handleChange.bind(this)} value={this.state.message}/>
-        <Button secondary>
+
+        <p><Button secondary>
         <Icon name='talk'/>
         Send
-        </Button>
+        </Button></p>
         </form>
         </Form>
       </div>

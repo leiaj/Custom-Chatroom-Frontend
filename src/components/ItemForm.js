@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, Route } from 'react-router-dom'
 import { Button, Form, Icon } from 'semantic-ui-react'
 
 export default class ItemForm extends Component{
@@ -47,6 +48,13 @@ export default class ItemForm extends Component{
           </Button>
         </form>
         </Form>
+        <p></p>
+          <Link to={'https://giphy.com/search/transparent'} target='_blank'>
+          <p></p>
+        <Button secondary>
+        Search Giphy
+        </Button>
+        </Link>
       </div>
     )
   }

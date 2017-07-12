@@ -11,6 +11,7 @@ import Tips from '../components/Tips'
 import ChatBox from '../components/ChatBox'
 import { ItemsAdapter, ChatroomAdapter, GiphyAdapter } from '../adapters'
 import { Link, Route, withRouter } from 'react-router-dom'
+import { Segment } from 'semantic-ui-react'
 
 
 export default class ChatsContainer extends Component{
@@ -59,11 +60,11 @@ export default class ChatsContainer extends Component{
 
   displayMessages(){
     // const user = this.props.activeUser
-    const messages = this.state.messages.map(message => <li>{message.username}: {message.content}</li>)
+    const messages = this.state.messages.map(message => <Segment size='small' textAlign='left'>{message.username}:  {message.content}</Segment>)
       return(
-        <ul className='messages'>
+        <Segment.Group>
         {messages}
-        </ul>
+        </Segment.Group>
       )
     }
 

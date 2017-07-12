@@ -9,6 +9,7 @@ import GiphySearch from '../components/GiphySearch'
 import ItemForm from '../components/ItemForm'
 import ChatroomList from '../components/ChatroomList'
 import Welcome from '../components/Welcome'
+import About from '../components/About'
 import Tips from '../components/Tips'
 import ChatBox from '../components/ChatBox'
 import { ItemsAdapter, ChatroomAdapter, GiphyAdapter } from '../adapters'
@@ -181,7 +182,10 @@ class ChatRoomContainer extends Component{
     return(
       <div>
         <div>
+
           <Route exact path ='/' render={() =><div><Welcome chatrooms={this.state.chatrooms} createChatroom={this.createChatroom}/> </div>}/>
+
+          <Route exact path='/about' render={()=><About />}/>
 
           <Route exact path = '/new' render= {() =>
             <div className='new-chatroom-wrapper'>

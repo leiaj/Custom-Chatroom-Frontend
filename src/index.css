@@ -101,7 +101,7 @@ body{
 }
 
 .chatroom-list{
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 
 }
 
@@ -163,6 +163,7 @@ body{
   min-height: 60vh;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 
 .welcome-content{
@@ -181,7 +182,7 @@ body{
   width: 20%;
   background: #ccc;
   order: 1;
-  height: 500px;
+  height: 600px;
 }
 
 .welcome-chatlist{
@@ -189,7 +190,7 @@ body{
   order: 2;
   background: #eee;
   width: 900px;
-  height: 500px;
+  max-height: 800px;
 }
 
 .display-msg li{
