@@ -82,7 +82,7 @@ class ChatRoomContainer extends Component{
 
   createChatroom(chatroom){
     console.log("I'm being called")
-    fetch(`http://localhost:3000/api/v1/chatrooms`, {
+    fetch(`https://chittychattyfun.herokuapp.com/api/v1/chatrooms`, {
      method: 'POST',
      headers: {
        'content-type': 'application/json',
@@ -110,7 +110,7 @@ class ChatRoomContainer extends Component{
 
   createItem(item){
     console.log("I'm being called")
-    fetch(`http://localhost:3000/api/v1/items`, {
+    fetch(`https://chittychattyfun.herokuapp.com/api/v1/items`, {
      method: 'POST',
      headers: {
        'content-type': 'application/json',

@@ -1,4 +1,4 @@
-const baseUrl = `http://${window.location.hostname}:3000/api/v1`
+const baseUrl = `https://chittychattyfun.herokuapp.com/api/v1`
 
 export class ItemsAdapter{
 
