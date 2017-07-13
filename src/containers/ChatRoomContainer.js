@@ -69,7 +69,6 @@ class ChatRoomContainer extends Component{
 
   handleChange(event){
     const term = this.state.searchTerm
-    // const gifs = this.state.giphyItems
     this.setState({
       searchTerm: event.target.value
     })
@@ -134,17 +133,6 @@ class ChatRoomContainer extends Component{
    }))
   }
 
-  // shouldComponentUpdate(nextProps, nextState){
-  //   // return true
-  // }
-
-  // componentDidUpdate(nextProps, nextState){
-  //   ChatroomAdapter.fetchChatrooms()
-  //   .then(data => {this.setState({
-  //     chatrooms: data
-  //   }))}
-  // }
-
   alertSN() {
     var txt;
     if (!localStorage.person){
@@ -158,7 +146,6 @@ class ChatRoomContainer extends Component{
 
   componentDidMount(){
     this.setState({
-      // dummy: true
     })
     ItemsAdapter.fetchItems()
     .then(data => this.setState({
@@ -173,7 +160,6 @@ class ChatRoomContainer extends Component{
 
 
   render(){
-    // console.log(this.state.chatrooms)
     return(
       <div>
         <div>

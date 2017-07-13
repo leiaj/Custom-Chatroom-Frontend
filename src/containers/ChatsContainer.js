@@ -42,9 +42,6 @@ export default class ChatsContainer extends Component{
       this.props.cableApp.images = this.props.cableApp.cable.subscriptions.create({channel: "ImagesChannel", room: `${this.props.chatroom_id}`}, {
         received: (item) => {
           console.log("image received", item)
-          // this.setState({
-          //   currentItemCoords: [item, ...this.state.item]
-          // })
         }
       })
     }
@@ -59,7 +56,6 @@ export default class ChatsContainer extends Component{
     }
 
   displayMessages(){
-    // const user = this.props.activeUser
     const messages = this.state.messages.map(message => <Segment size='small' textAlign='left'>{message.username}:  {message.content}</Segment>)
       return(
         <Segment.Group>
@@ -73,16 +69,12 @@ export default class ChatsContainer extends Component{
       console.log(mouseEvent)
       console.log(mouseEvent.target.x)
       console.log(mouseEvent.target.y)
-      // this.props.cableApp.images.send({
-      //   item: item
-      // })
 
     }
 
 
   render(){
     console.log("chatsCONTAINER ------------")
-    // console.log(this.props.chatrooms)
     return(
       <div className='wrapper'>
         <div className="content">
