@@ -14,6 +14,7 @@ import Tips from '../components/Tips'
 import ChatBox from '../components/ChatBox'
 import { ItemsAdapter, ChatroomAdapter, GiphyAdapter } from '../adapters'
 import { Link, Route, withRouter } from 'react-router-dom'
+import { Container, Grid} from 'semantic-ui-react'
 
 class ChatRoomContainer extends Component{
 
@@ -30,8 +31,7 @@ class ChatRoomContainer extends Component{
       currentItemCoords:{x_coord: 0, y_coord:0},
       giphyItems: [],
       searchTerm: '',
-      messages: [],
-      dummy: null
+      messages: []
     }
 
     this.setCurrentItemCoords = this.setCurrentItemCoords.bind(this)
@@ -97,14 +97,15 @@ class ChatRoomContainer extends Component{
      })
    })
    .then(chatroom => chatroom.json())
-  //  .then(this.setState(prevState){
-  //    chatrooms: [chatroom, ...prevState.chatrooms]
-  //  })
-   .then((chatroom) => {
-     this.props.history.push(`/chatrooms/${chatroom.id}`)})
-
-
-  //  .then(console.log)
+   .then(chatroom => {
+     this.setState(prevState => {
+       return {chatrooms: [...prevState.chatrooms, chatroom]}
+     })
+     return chatroom
+    })
+     .then((chatroom) =>{
+     this.props.history.push(`/chatrooms/${chatroom.id}`)
+   })
   }
 
   createItem(item){
@@ -134,23 +135,14 @@ class ChatRoomContainer extends Component{
   }
 
   // shouldComponentUpdate(nextProps, nextState){
-  //   if (nextState.chatItems !== this.state.chatItems){
-  //     return true
-  //   }
-  //   if (nextState.chatrooms !== this.state.chatrooms){
-  //     return true
-  //   }
+  //   // return true
   // }
-  //
-  // componentDidUpdate(prevProps, prevState){
-  //     ItemsAdapter.fetchItems()
-  //     .then(data => this.setState({
-  //       chatItems: data
-  //     }))
-  //     ChatroomAdapter.fetchChatroom()
-  //     .then(data => this.setState({
-  //       chatrooms: data
-  //     }))
+
+  // componentDidUpdate(nextProps, nextState){
+  //   ChatroomAdapter.fetchChatrooms()
+  //   .then(data => {this.setState({
+  //     chatrooms: data
+  //   }))}
   // }
 
   alertSN() {
@@ -165,11 +157,14 @@ class ChatRoomContainer extends Component{
 
 
   componentDidMount(){
+    this.setState({
+      // dummy: true
+    })
     ItemsAdapter.fetchItems()
     .then(data => this.setState({
       chatItems: data
     }))
-    ChatroomAdapter.fetchChatroom()
+    ChatroomAdapter.fetchChatrooms()
     .then(data => this.setState({
       chatrooms: data
     }))
@@ -188,18 +183,21 @@ class ChatRoomContainer extends Component{
           <Route exact path='/about' render={()=><About />}/>
 
           <Route exact path = '/new' render= {() =>
-            <div className='new-chatroom-wrapper'>
-              <div className='new-chatroom-content-'>
-                <div className='new-chatroom-columns'>
-                <div className='new-chatroom-tips-parent'>
-                  <Tips />
-                </div>
-                  <div className='new-chatroom-form-parent'>
-                    <ChatroomForm onSubmit={this.createChatroom}/>
-                  </div>
-                  </div>
-                </div>
-              </div>
+            <div>
+            <Container>
+              <Grid>
+                <Grid.Row columns={2}>
+                  <Grid.Column width='2'></Grid.Column>
+                  <Grid.Column width='12'>
+                  <ChatroomForm onSubmit={this.createChatroom}/>
+                  <Grid.Column width='1'><p></p><p><Tips /></p></Grid.Column>
+                  <Grid.Column width='1'></Grid.Column>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Container>
+
+            </div>
             }/>
 
           <Route exact path = '/chatrooms' render={()=><ChatroomList chatrooms={this.state.chatrooms}/>} />

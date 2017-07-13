@@ -7,6 +7,8 @@ export default function ChatroomList(props){
 
   const list = chatrooms.map(chatroom =>  <Card raised><Link to={`/chatrooms/${chatroom.id}`}><img src={`${chatroom.background_img_url}`} width='100px' /> <p>{chatroom.name}</p></Link></Card>)
 
+
+
   return(
     <div className="chatroom-list">
     <Container>

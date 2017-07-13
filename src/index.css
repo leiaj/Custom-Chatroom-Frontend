@@ -68,10 +68,13 @@ body{
 }
 
 .new-chatroom-wrapper{
+  border: solid;
+  border-width: thick;
   min-height: 100vh;
   background: #ccc;
   display: flex;
-  flex-direction: column;;
+  flex-direction: column;
+  height:500px;
 }
 
 .new-chatroom-content{
@@ -88,7 +91,7 @@ body{
 
 .new-chatroom-form-parent{
   flex: 1;
-  order: 1;
+  order: 2;
   background: #ccc;
   height: 625px;
 }
@@ -96,7 +99,7 @@ body{
 .new-chatrooms-tips-parent{
   /*width: 500px;*/
   background: #ccc;
-  order: 2;
+  order: 1;
   height: 650px;
 }
 

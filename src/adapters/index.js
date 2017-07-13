@@ -26,7 +26,7 @@ export class ItemsAdapter{
 }
 
 export class ChatroomAdapter{
-  static fetchChatroom(){
+  static fetchChatrooms(){
     return fetch(`${baseUrl}/chatrooms`)
     .then(res => res.json())
   }
